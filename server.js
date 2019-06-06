@@ -1,4 +1,6 @@
 const express = require('express'),
+const bodyParser = require('body-parser');
+
 app = express(),
 port = process.env.PORT || 3000;
 
@@ -30,3 +32,8 @@ mc.query("Select * from Products", function (err, res) {
 });   
 
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+const routes = require('./app/routes/appRoutes'); //importing route
+routes(app); //register the route

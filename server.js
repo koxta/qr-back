@@ -1,4 +1,4 @@
-const express = require('express'),
+const express = require('express');
 const bodyParser = require('body-parser');
 
 app = express(),
@@ -27,7 +27,7 @@ mc.query("Select * from Products", function (err, res) {
         console.log("error: ", err);
     }
     else{
-      console.log('tasks : ', res);  
+      console.log('Products : ', res);  
     }
 });   
 
@@ -35,5 +35,5 @@ mc.query("Select * from Products", function (err, res) {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-const routes = require('./app/routes/appRoutes'); //importing route
-routes(app); //register the route
+const routes = require('./app/routes/appRoutes'); 
+routes(app); 

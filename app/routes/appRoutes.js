@@ -5,7 +5,7 @@ module.exports = function(app) {
   // todoList Routes
   app.route('/products')
     .get(controller.list_all_products)
+    .post(controller.add_product)
    
-//    app.route('/products/:productId')
 
     };

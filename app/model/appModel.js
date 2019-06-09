@@ -20,4 +20,18 @@ Product.getAllProduct = function getAllProduct(result) {
                 }
             });   
 };
+
+Product.addProduct = function addProduct(product)
+{
+    sql.query(`INSERT INTO \`products\` (\`ProductId\`, \`ProductName\`, \`ProductPrice\`) VALUES (NULL, \'${product.productName}\', \'${product.productPrice}\');`,
+    (err,res)=>{
+        if(err) {
+            console.log("error: ", err);
+        }
+        else{
+          console.log("added successfully");  
+        }
+    });
+}
+
 module.exports = Product;

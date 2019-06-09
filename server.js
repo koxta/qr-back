@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 app = express(),
 port = process.env.PORT || 3000;
@@ -15,11 +16,7 @@ const mc = mysql.createConnection({
 
 mc.connect();
 
-
-
 app.listen(port);
-
-
 
 mc.query("Select * from Products", function (err, res) {
 
@@ -34,6 +31,7 @@ mc.query("Select * from Products", function (err, res) {
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cors({origin:true}));
 
 const routes = require('./app/routes/appRoutes'); 
 routes(app); 

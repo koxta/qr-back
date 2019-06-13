@@ -1,37 +1,52 @@
-'user strict';
-var sql = require('./db.js');
+"user strict";
+var sql = require("./db.js");
 
-var Product = function(product){
-    this.productId = product.productId;
-    this.productName = product.productName;
-    this.productPrice = product.productPrice;
+var Product = function(product) {
+  this.productId = product.productId;
+  this.productName = product.productName;
+  this.productPrice = product.productPrice;
 };
 
 Product.getAllProduct = function getAllProduct(result) {
-        sql.query("Select * from Products", function (err, res) {
-                if(err) {
-                    console.log("error: ", err);
-                    result(null, err);
-                }
-                else{
-                  console.log('tasks : ', res);  
+  sql.query("Select * from Products", function(err, res) {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+    } else {
+      console.log("tasks : ", res);
 
-                 result(null, res);
-                }
-            });   
+      result(null, res);
+    }
+  });
 };
 
-Product.addProduct = function addProduct(product)
-{
-    sql.query(`INSERT INTO \`products\` (\`ProductId\`, \`ProductName\`, \`ProductPrice\`) VALUES (NULL, \'${product.productName}\', \'${product.productPrice}\');`,
-    (err,res)=>{
-        if(err) {
-            console.log("error: ", err);
-        }
-        else{
-          console.log("added successfully");  
-        }
-    });
-}
+Product.addProduct = function addProduct(product) {
+  sql.query(
+    `INSERT INTO \`products\` (\`ProductId\`, \`ProductName\`, \`ProductPrice\`) VALUES (NULL, \'${
+      product.productName
+    }\', \'${product.productPrice}\');`,
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+      } else {
+        console.log("added successfully");
+      }
+    }
+  );
+};
+
+Product.getProductById = (id,result) => {
+  sql.query(
+    `SELECT * FROM \`products\` WHERE ProductId = ${id}`,
+    (err, res) => {
+      if (err) {
+        console.log(err);
+        result("error getting data");
+      } else {
+        result(res);
+      }
+    }
+  );
+};
 
 module.exports = Product;

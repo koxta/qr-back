@@ -22,11 +22,11 @@ User.addDevice = (userId,result) =>{
         if(res.length == 0)
         {
             registerUser(userId)
-            result("user registered")
+            result("user registered");
         }
         else
         {
-            result("success")
+            result("user already registered");
         }
     })
 }

@@ -6,7 +6,9 @@ let Cart = function(cart) {
   this.productId = cart.productId;
   this.userId = cart.userId;
 };
-
+Cart.getUserId = (userName) =>{
+    sql.query()
+}
 
 Cart.AddEntry = function addEntry(cart,result) {
     sql.query(`INSERT INTO \`cart\` (\`UserId\`, \`ProductId\`, \`CartId\`) VALUES ('${cart.userId}', '${cart.productId}', NULL);`, function(err, res) {

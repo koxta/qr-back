@@ -1,14 +1,22 @@
 "use strict";
 const Carts = require("../model/cartModel");
+const User = require("../model/userModel");
+
+
 
 exports.insert = (req, res) => {
 
   let cart = new Carts(req.body);  
 
-  Carts.AddEntry(cart,(result) => {
-    console.log("result "+ result);
-    res.send(result);
-  });
+   User.getIdByName(cart.userId,
+    (result)=>{
+        Carts.AddEntry({"userId":result[0].UserId,"productId":cart.productId},(result) => {
+            console.log("result "+ result);
+            res.send(result);
+          });
+    });
+
+
 };
 
 exports.get_device_products = (req,res) =>{

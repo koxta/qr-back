@@ -13,5 +13,6 @@ module.exports = function(app) {
 
   app.route('/cart/:id')
     .get(cartController.get_device_products)
+    .post(cartController.insert);
 
     };

@@ -14,5 +14,33 @@ User.getIdByName = (userName,result) =>{
     })
 }
 
+User.addDevice = (userId,result) =>{
+
+    sql.query(`SELECT * FROM \`user\` WHERE UserName = "${userId}"`,
+    (err,res)=>{
+        console.log(res);
+        if(res.length == 0)
+        {
+            registerUser(userId)
+            result("user registered")
+        }
+        else
+        {
+            result("success")
+        }
+    })
+}
+
+
+function registerUser(userId)
+{
+    sql.query(`INSERT INTO \`user\` (\`UserId\`, \`UserName\`) VALUES (NULL, '${userId}');`,
+    (err,res)=>{
+        if(err)
+        {
+            console.log(err);
+        }
+    })
+}
 
 module.exports = User;

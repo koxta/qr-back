@@ -30,5 +30,33 @@ Cart.GetProducts = function getProducts(userId,result){
     });
 }
 
+Cart.Buy = function buy(userId)
+{
+    sql.query(`SELECT user.UserId FROM \`cart\` JOIN
+    products ON products.ProductId = cart.ProductId JOIN
+    user ON user.UserId = cart.UserId 
+    WHERE UserName = "${userId}"
+    `,
+    (err,res)=>{
+        if(!err)
+        {
+            console.log(res);
+            sql.query(`DELETE FROM \`cart\` WHERE UserId = ${res[0].UserId}`,
+            (err,res)=>{
+                if(!err)
+                {
+                    console.log("user bought products");
+                }
+                else
+                {
+                    console.log(err);
+                }
+            })
+        }
+        else{
+            console.log(err);
+        }
+    })
+}
 
 module.exports = Cart;

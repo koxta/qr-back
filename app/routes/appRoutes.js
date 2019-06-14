@@ -15,6 +15,8 @@ module.exports = function(app) {
     .get(cartController.get_device_products)
     .post(cartController.insert);
 
+  app.route('/cart/:id/buy')
+  .get(cartController.buy);  
 
   app.route('/user/:id')
   .get(userController.add_device);

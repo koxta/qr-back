@@ -2,8 +2,8 @@
 module.exports = function(app) {
   const controller = require('../controller/appController');
   const cartController = require('../controller/cartController');
+  const userController = require('../controller/userController');
 
-  // todoList Routes
   app.route('/products')
     .get(controller.list_all_products)
     .post(controller.add_product)
@@ -14,5 +14,9 @@ module.exports = function(app) {
   app.route('/cart/:id')
     .get(cartController.get_device_products)
     .post(cartController.insert);
+
+
+  app.route('/user/:id')
+  .get(userController.add_device);
 
     };

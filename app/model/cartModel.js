@@ -22,7 +22,7 @@ Cart.GetProducts = function getProducts(userId,result){
     sql.query(`SELECT * FROM \`cart\` JOIN
     products ON products.ProductId = cart.ProductId JOIN
     user ON user.UserId = cart.UserId
-    WHERE UserId = '${userId}' `,
+    WHERE UserName = '${userId}' `,
     (err,res)=>{
         result(res);
     });

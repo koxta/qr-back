@@ -21,6 +21,7 @@ exports.add_product = function(req, res) {
       .send({ error: true, message: "Please provide task/status" });
   } else {
     Products.addProduct(newProduct);
+  
     res.status(200).send({ message: "successfully added" });
   }
 };

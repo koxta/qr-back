@@ -1,6 +1,7 @@
 'use strict';
 module.exports = function(app) {
-  var controller = require('../controller/appController');
+  const controller = require('../controller/appController');
+  const cartController = require('../controller/cartController');
 
   // todoList Routes
   app.route('/products')
@@ -9,5 +10,8 @@ module.exports = function(app) {
 
   app.route('/products/:id')
     .get(controller.get_product_by_id)
+
+  app.route('/cart/:id')
+    .get(cartController.get_device_products)
 
     };
